@@ -97,21 +97,69 @@ temp_directory="/tmp/$(uuidgen)"
 mkdir -p "${temp_directory}"
 
 # Start building!
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Atmosphere..."
+fi
 atmosphere_version=$(./modules.sh download_atmosphere "${temp_directory}/must_have" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading hekate..."
+fi
 hekate_version=$(./modules.sh download_hekate "${temp_directory}/must_have" "${version_number}" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading emuiibo..."
+fi
 emuiibo_version=$(./modules.sh download_emuiibo "${temp_directory}/emuiibo" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Kosmos Toolbox..."
+fi
 kosmos_toolbox_version=$(./modules.sh download_kosmos_toolbox "${temp_directory}/kosmos_toolbox" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Kosmos Updater..."
+fi
 kosmos_updater_version=$(./modules.sh download_kosmos_updater "${temp_directory}/kosmos_updater" "${version_number}" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading ldn-mitm..."
+fi
 ldn_mitm_version=$(./modules.sh download_ldn_mitm "${temp_directory}/ldn_mitm" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Lockpick_RCM..."
+fi
 lockpick_rcm_version=$(./modules.sh download_lockpick_rcm "${temp_directory}/lockpick_rcm" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading sys-clk..."
+fi
 sys_clk_version=$(./modules.sh download_sys_clk "${temp_directory}/sys_clk" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading sys-ftpd..."
+fi
 sys_ftpd_version=$(./modules.sh download_sys_ftpd "${temp_directory}/sys_ftpd" "${username_password}")
 
 if [ "${auto}" != "1" ]
 then
+    echo "Downloading appstore..."
     appstore_version=$(./modules.sh download_appstore "${temp_directory}/appstore" "${username_password}")
+    echo "Downloading EdiZon..."
     edizon_version=$(./modules.sh download_edizon "${temp_directory}/edizon" "${username_password}")
+    echo "Downloading Goldleaf..."
     goldleaf_version=$(./modules.sh download_goldleaf "${temp_directory}/goldleaf" "${username_password}")
+    echo "Downloading Lockpick..."
     lockpick_version=$(./modules.sh download_lockpick "${temp_directory}/lockpick" "${username_password}")
 fi
 
