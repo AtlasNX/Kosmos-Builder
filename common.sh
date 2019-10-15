@@ -43,14 +43,21 @@ test_login () {
 #   - GitHub Login
 #   - GitHub Company
 #   - GitHub Repo
+#   - Allow pre-release releases
 # Returns:
 #   The latest release JSON.
 get_latest_release () {
+    jqQuery=".[0]"
+    if [ "${4}" == "0" ]
+    then
+        jqQuery="[.[] | select(.prerelease == false)][0]"
+    fi
+
     if [ -z "${1}" ] 
     then
-        echo $(curl -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: Kosmos/1.0.0" -s https://api.github.com/repos/${2}/${3}/releases | jq -r '.[0]')
+        echo $(curl -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: Kosmos/1.0.0" -s https://api.github.com/repos/${2}/${3}/releases | jq -r "${jqQuery}")
     else
-        echo $(curl -u ${1} -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: Kosmos/1.0.0" -s https://api.github.com/repos/${2}/${3}/releases | jq -r '.[0]')
+        echo $(curl -u ${1} -H "Accept: application/json" -H "Content-Type: application/json" -H "User-Agent: Kosmos/1.0.0" -s https://api.github.com/repos/${2}/${3}/releases | jq -r "${jqQuery}")
     fi
 }
 

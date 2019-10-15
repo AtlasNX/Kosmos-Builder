@@ -26,7 +26,7 @@
 #   The version number.
 download_atmosphere () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "Atmosphere-NX" "Atmosphere")
+    latest_release=$(./common.sh get_latest_release "${2}" "Atmosphere-NX" "Atmosphere" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "atmosphere*" "*.zip")
     file=$(./common.sh download_file "${asset}")
@@ -55,7 +55,7 @@ download_atmosphere () {
 #   The version number.
 download_hekate () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${3}" "CTCaer" "hekate")
+    latest_release=$(./common.sh get_latest_release "${3}" "CTCaer" "hekate" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "hekate*" "*.zip")
     file=$(./common.sh download_file "${asset}")
@@ -80,7 +80,7 @@ download_hekate () {
 
 download_appstore () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "vgmoose" "hb-appstore")
+    latest_release=$(./common.sh get_latest_release "${2}" "vgmoose" "hb-appstore" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.nro")
     file=$(./common.sh download_file "${asset}")
@@ -93,7 +93,7 @@ download_appstore () {
 
 download_edizon () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "WerWolv" "EdiZon")
+    latest_release=$(./common.sh get_latest_release "${2}" "WerWolv" "EdiZon" "0")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.zip")
     if [ ! -z "${asset}" ]
@@ -115,7 +115,7 @@ download_edizon () {
 
 download_emuiibo () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "XorTroll" "emuiibo")
+    latest_release=$(./common.sh get_latest_release "${2}" "XorTroll" "emuiibo" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "emuiibo*" "*.zip")
     file=$(./common.sh download_file "${asset}")
@@ -132,7 +132,7 @@ download_emuiibo () {
 
 download_goldleaf () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "XorTroll" "Goldleaf")
+    latest_release=$(./common.sh get_latest_release "${2}" "XorTroll" "Goldleaf" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.nro")
     file=$(./common.sh download_file "${asset}")
@@ -145,7 +145,7 @@ download_goldleaf () {
 
 download_kosmos_toolbox () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "AtlasNX" "Kosmos-Toolbox")
+    latest_release=$(./common.sh get_latest_release "${2}" "AtlasNX" "Kosmos-Toolbox" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.nro")
     file=$(./common.sh download_file "${asset}")
@@ -159,7 +159,7 @@ download_kosmos_toolbox () {
 
 download_kosmos_updater () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${3}" "AtlasNX" "Kosmos-Updater")
+    latest_release=$(./common.sh get_latest_release "${3}" "AtlasNX" "Kosmos-Updater" "0")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.nro")
     file=$(./common.sh download_file "${asset}")
@@ -173,7 +173,7 @@ download_kosmos_updater () {
 
 download_ldn_mitm () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "spacemeowx2" "ldn_mitm")
+    latest_release=$(./common.sh get_latest_release "${2}" "spacemeowx2" "ldn_mitm" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "ldn_mitm*" "*.zip")
     file=$(./common.sh download_file "${asset}")
@@ -187,7 +187,7 @@ download_ldn_mitm () {
 
 download_lockpick () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "shchmue" "Lockpick")
+    latest_release=$(./common.sh get_latest_release "${2}" "shchmue" "Lockpick" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.nro")
     file=$(./common.sh download_file "${asset}")
@@ -200,7 +200,7 @@ download_lockpick () {
 
 download_lockpick_rcm () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "shchmue" "Lockpick_RCM")
+    latest_release=$(./common.sh get_latest_release "${2}" "shchmue" "Lockpick_RCM" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.bin")
     file=$(./common.sh download_file "${asset}")
@@ -213,7 +213,7 @@ download_lockpick_rcm () {
 
 download_sys_clk () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "retronx-team" "sys-clk")
+    latest_release=$(./common.sh get_latest_release "${2}" "retronx-team" "sys-clk" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "sys-clk*" "*.zip")
     file=$(./common.sh download_file "${asset}")
@@ -247,7 +247,7 @@ download_sys_ftpd () {
 
 download_nxdumptool () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "DarkMatterCore" "nxdumptool")
+    latest_release=$(./common.sh get_latest_release "${2}" "DarkMatterCore" "nxdumptool" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "nxdumptool*" "*.nro")
     file=$(./common.sh download_file "${asset}")
