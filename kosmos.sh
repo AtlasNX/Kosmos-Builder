@@ -162,13 +162,20 @@ nxdumptool_version=$(./modules.sh download_nxdumptool "${temp_directory}" "${use
 dest=$(realpath -s ${1})
 rm -f "${dest}/Kosmos-${version_number}.zip"
 
-# Bundle everything together.
 current_directory=${PWD}
+
+# Bundle Full Package
 cd "${temp_directory}"
 zip -q -r "${dest}/Kosmos-${version_number}.zip" .
+
+# Bundle Upgrade Package
 cd "${current_directory}"
+./modules.sh remove_configs "${temp_directory}"
+cd "${temp_directory}"
+zip -q -r "${dest}/UpgradeKosmos-${version_number}.zip" .
 
 # Clean up.
+cd "${current_directory}"
 rm -rf "${temp_directory}"
 
 # Output some useful information.

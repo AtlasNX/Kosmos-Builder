@@ -96,10 +96,19 @@ download_edizon () {
     latest_release=$(./common.sh get_latest_release "${2}" "WerWolv" "EdiZon")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.zip")
-    file=$(./common.sh download_file "${asset}")
+    if [ ! -z "${asset}" ]
+    then
+        file=$(./common.sh download_file "${asset}")
 
-    unzip -qq "${file}" -d "${1}"
-    rm -f "${file}"
+        unzip -qq "${file}" -d "${1}"
+        rm -f "${file}"
+    else
+        asset=$(./common.sh find_asset "${latest_release}" "*.nro")
+        file=$(./common.sh download_file "${asset}")
+
+        mkdir -p "${1}/switch/EdiZon"
+        mv "${file}" "${1}/switch/EdiZon/EdiZon.nro"
+    fi
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
@@ -247,6 +256,26 @@ download_nxdumptool () {
     mv ${file} "${1}/switch/NXDumpTool/NXDumpTool.nro"
 
     echo $(./common.sh get_version_number "${latest_release}")
+}
+
+remove_configs () {
+    # Atmosphere
+    rm -f "${1}/atmosphere/BCT.ini"
+    rm -f "${1}/atmosphere/loader.ini"
+    rm -f "${1}/atmosphere/system_settings.ini"
+
+    # Hekate
+    rm -f "${1}/bootloader/patches.ini"
+    rm -f "${1}/bootloader/patches_template.ini"
+
+    # System Modules
+    rm -f "${1}/config/hid_mitm/config.ini"
+    rm -f "${1}/config/sys-clk/config.ini"
+    rm -f "${1}/config/sys-ftpd/config.ini"
+
+    # Apps
+    rm -f "${1}/switch/KosmosToolbox/config.json"
+    rm -f "${1}/switch/KosmosUpdater/settings.cfg"
 }
 
 # =============================================================================
