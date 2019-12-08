@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Kosmos
-# Copyright (C) 2019 Steven Mattera
+# Copyright (C) 2019 Nichole Mattera
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -33,6 +33,7 @@ download_atmosphere () {
 
     unzip -qq "${file}" -d "${1}"
     rm -f "${1}/switch/reboot_to_payload.nro"
+    rm -f "${1}/atmosphere/reboot_payload.bin"
     rm -f "${file}"
 
     asset=$(./common.sh find_asset "${latest_release}" "fusee*" "*.bin")
@@ -40,8 +41,7 @@ download_atmosphere () {
 
     mkdir -p "${1}/bootloader/payloads"
     mv ${file} "${1}/bootloader/payloads/fusee-primary.bin"
-    rm -f "${1}/atmosphere/system_settings.ini"
-    cp "./Modules/atmosphere/system_settings.ini" "${1}/atmosphere/system_settings.ini"
+    cp "./Modules/atmosphere/system_settings.ini" "${1}/atmosphere/config/system_settings.ini"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
@@ -69,9 +69,6 @@ download_hekate () {
     cp "${payload}" "${1}/atmosphere/reboot_payload.bin"
 
     cp "./Modules/hekate/bootlogo.bmp" "${1}/bootloader/bootlogo.bmp"
-
-    rm -f "${1}/bootloader/patches_template.ini"
-    cp "./Modules/hekate/patches_template.ini" "${1}/bootloader/patches_template.ini"
     
     sed "s/KOSMOS_VERSION/${2}/g" "./Modules/hekate/hekate_ipl.ini" >> "${1}/bootloader/hekate_ipl.ini"
 
@@ -123,8 +120,8 @@ download_emuiibo () {
     unzip -qq "${file}" -d "${1}"
     rm -f "${1}/titles/0100000000000352/flags/boot2.flag"
     rm -f "${file}"
-    mkdir -p "${1}/atmosphere/titles"
-    mv "${1}/titles/0100000000000352" "${1}/atmosphere/titles/"
+    mkdir -p "${1}/atmosphere/contents"
+    mv "${1}/titles/0100000000000352" "${1}/atmosphere/contents/"
     rm -rf "${1}/titles"
 
     echo $(./common.sh get_version_number "${latest_release}")
@@ -179,7 +176,7 @@ download_ldn_mitm () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
-    rm -f "${1}/atmosphere/titles/4200000000000010/flags/boot2.flag"
+    rm -f "${1}/atmosphere/contents/4200000000000010/flags/boot2.flag"
     rm -f "${file}"
 
     echo $(./common.sh get_version_number "${latest_release}")
@@ -219,7 +216,7 @@ download_sys_clk () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
-    rm -f "${1}/atmosphere/titles/00FF0000636C6BFF/flags/boot2.flag"
+    rm -f "${1}/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag"
     rm -f "${1}/README.html"
     rm -f "${file}"
 
@@ -238,7 +235,7 @@ download_sys_ftpd () {
     mkdir -p "${temp_sysftpd_directory}"
     unzip -qq "${file}" -d "${temp_sysftpd_directory}"
     cp -r "${temp_sysftpd_directory}/sd"/* "${1}"
-    rm -f "${1}/atmosphere/titles/420000000000000E/flags/boot2.flag"
+    rm -f "${1}/atmosphere/contents/420000000000000E/flags/boot2.flag"
     rm -f "${file}"
     rm -rf "${temp_sysftpd_directory}"
 
@@ -260,13 +257,11 @@ download_nxdumptool () {
 
 remove_configs () {
     # Atmosphere
-    rm -f "${1}/atmosphere/BCT.ini"
-    rm -f "${1}/atmosphere/loader.ini"
-    rm -f "${1}/atmosphere/system_settings.ini"
+    rm -f "${1}/atmosphere/config/BCT.ini"
+    rm -f "${1}/atmosphere/config/system_settings.ini"
 
     # Hekate
     rm -f "${1}/bootloader/patches.ini"
-    rm -f "${1}/bootloader/patches_template.ini"
 
     # System Modules
     rm -f "${1}/config/hid_mitm/config.ini"
