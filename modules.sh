@@ -176,6 +176,8 @@ download_ldn_mitm () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
+    mv "${1}/atmosphere/titles/4200000000000010" "${1}/atmosphere/contents/4200000000000010"
+    rm -rf "${1}/atmosphere/titles"
     rm -f "${1}/atmosphere/contents/4200000000000010/flags/boot2.flag"
     rm -f "${file}"
 
@@ -216,8 +218,11 @@ download_sys_clk () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
+    mv "${1}/atmosphere/titles/00FF0000636C6BFF" "${1}/atmosphere/contents/00FF0000636C6BFF"
+    rm -rf "${1}/atmosphere/titles"
     rm -f "${1}/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag"
     rm -f "${1}/README.html"
+    rm -f "${1}/README.md"
     rm -f "${file}"
 
     echo $(./common.sh get_version_number "${latest_release}")
@@ -235,9 +240,15 @@ download_sys_ftpd () {
     mkdir -p "${temp_sysftpd_directory}"
     unzip -qq "${file}" -d "${temp_sysftpd_directory}"
     cp -r "${temp_sysftpd_directory}/sd"/* "${1}"
+    mv "${1}/atmosphere/titles/420000000000000E" "${1}/atmosphere/contents/420000000000000E"
+    rm -rf "${1}/atmosphere/titles"
     rm -f "${1}/atmosphere/contents/420000000000000E/flags/boot2.flag"
     rm -f "${file}"
     rm -rf "${temp_sysftpd_directory}"
+
+    # Because the version from bsnx is outdated???
+    rm -f "${1}/atmosphere/contents/420000000000000E/exefs.nsp"
+    cp "./Modules/sys-ftpd/exefs.nsp" "${1}/atmosphere/contents/420000000000000E/exefs.nsp"
 
     echo $(expr substr "${latest_release}" 20 7)
 }
@@ -259,9 +270,6 @@ remove_configs () {
     # Atmosphere
     rm -f "${1}/atmosphere/config/BCT.ini"
     rm -f "${1}/atmosphere/config/system_settings.ini"
-
-    # Hekate
-    rm -f "${1}/bootloader/patches.ini"
 
     # System Modules
     rm -f "${1}/config/hid_mitm/config.ini"
