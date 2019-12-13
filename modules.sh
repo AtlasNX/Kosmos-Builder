@@ -228,29 +228,18 @@ download_sys_clk () {
     echo $(./common.sh get_version_number "${latest_release}")
 }
 
-download_sys_ftpd () {
-    releases=$(curl -d '{"action":"get","items":{"href":"/sys-ftpd/","what":1}}' -H 'Content-Type: application/json' -X POST -s http://bsnx.lavatech.top/sys-ftpd/\?)
-    latest_release=$(echo ${releases} | jq -r '.items | map(select(has("fetched") | not)) | sort_by(.time) | reverse | .[1].href')
-    latest_release_url="http://bsnx.lavatech.top${latest_release}"
-
+download_sys_ftpd_light () {
     mkdir -p ${1}
-    file=$(./common.sh download_file_url "${latest_release_url}")
+    latest_release=$(./common.sh get_latest_release "${2}" "cathery" "sys-ftpd-light" "1")
 
-    temp_sysftpd_directory="/tmp/$(uuidgen)"
-    mkdir -p "${temp_sysftpd_directory}"
-    unzip -qq "${file}" -d "${temp_sysftpd_directory}"
-    cp -r "${temp_sysftpd_directory}/sd"/* "${1}"
+    asset=$(./common.sh find_asset "${latest_release}" "sys-ftpd-light*" "*.zip")
+    file=$(./common.sh download_file "${asset}")
+
+    unzip -qq "${file}" -d "${1}"
     mv "${1}/atmosphere/titles/420000000000000E" "${1}/atmosphere/contents/420000000000000E"
-    rm -rf "${1}/atmosphere/titles"
-    rm -f "${1}/atmosphere/contents/420000000000000E/flags/boot2.flag"
     rm -f "${file}"
-    rm -rf "${temp_sysftpd_directory}"
 
-    # Because the version from bsnx is outdated???
-    rm -f "${1}/atmosphere/contents/420000000000000E/exefs.nsp"
-    cp "./Modules/sys-ftpd/exefs.nsp" "${1}/atmosphere/contents/420000000000000E/exefs.nsp"
-
-    echo $(expr substr "${latest_release}" 20 7)
+    echo $(./common.sh get_version_number "${latest_release}")
 }
 
 download_nxdumptool () {

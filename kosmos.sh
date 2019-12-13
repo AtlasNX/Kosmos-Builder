@@ -148,9 +148,9 @@ sys_clk_version=$(./modules.sh download_sys_clk "${temp_directory}" "${username_
 
 if [ "${auto}" != "1" ]
 then
-    echo "Downloading sys-ftpd..."
+    echo "Downloading sys-ftpd-light..."
 fi
-sys_ftpd_version=$(./modules.sh download_sys_ftpd "${temp_directory}" "${username_password}")
+sys_ftpd_light_version=$(./modules.sh download_sys_ftpd_light "${temp_directory}" "${username_password}")
 
 if [ "${auto}" != "1" ]
 then
@@ -192,5 +192,5 @@ echo "  ldn_mitm - ${ldn_mitm_version}"
 echo "  Lockpick - ${lockpick_version}"
 echo "  Lockpick RCM - ${lockpick_rcm_version}"
 echo "  sys-clk - ${sys_clk_version}"
-echo "  sys-ftpd - ${sys_ftpd_version}"
+echo "  sys-ftpd-light - ${sys_ftpd_light_version}"
 echo "  NXDumpTool - ${nxdumptool_version}"
