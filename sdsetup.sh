@@ -147,9 +147,9 @@ sys_clk_version=$(./modules.sh download_sys_clk "${temp_directory}/sys_clk" "${u
 
 if [ "${auto}" != "1" ]
 then
-    echo "Downloading sys-ftpd..."
+    echo "Downloading sys-ftpd-light..."
 fi
-sys_ftpd_version=$(./modules.sh download_sys_ftpd "${temp_directory}/sys_ftpd" "${username_password}")
+sys_ftpd_version=$(./modules.sh download_sys_ftpd_light "${temp_directory}/sys_ftpd" "${username_password}")
 
 if [ "${auto}" != "1" ]
 then
@@ -200,7 +200,7 @@ then
     echo "  Lockpick - ${lockpick_version}"
     echo "  Lockpick RCM - ${lockpick_rcm_version}"
     echo "  sys-clk - ${sys_clk_version}"
-    echo "  sys-ftpd - ${sys_ftpd_version}"
+    echo "  sys-ftpd-light - ${sys_ftpd_version}"
 else
     echo "must_have:${atmosphere_version}"
     echo "hekate:${hekate_version}"
