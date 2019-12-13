@@ -236,7 +236,7 @@ download_sys_ftpd_light () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
-    mv "${1}/atmosphere/titles/420000000000000E" "${1}/atmosphere/contents/420000000000000E"
+    rm -f "${1}/atmosphere/contents/420000000000000E/flags/boot2.flag"
     rm -f "${file}"
 
     echo $(./common.sh get_version_number "${latest_release}")

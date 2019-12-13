@@ -36,7 +36,7 @@
 			"requires_reboot": false
 		},
 		{
-			"name"  : "sys-ftpd",
+			"name"  : "sys-ftpd-light",
 			"tid"   : "420000000000000E",
 			"requires_reboot": false
 		},
