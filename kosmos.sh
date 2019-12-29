@@ -148,6 +148,12 @@ sys_clk_version=$(./modules.sh download_sys_clk "${temp_directory}" "${username_
 
 if [ "${auto}" != "1" ]
 then
+    echo "Downloading sys_con..."
+fi
+sys_con_version=$(./modules.sh download_sys_con "${temp_directory}" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
     echo "Downloading sys-ftpd-light..."
 fi
 sys_ftpd_light_version=$(./modules.sh download_sys_ftpd_light "${temp_directory}" "${username_password}")
@@ -160,27 +166,27 @@ nxdumptool_version=$(./modules.sh download_nxdumptool "${temp_directory}" "${use
 
 if [ "${auto}" != "1" ]
 then
-    echo "Downloading sys_con..."
-fi
-sys_con_version=$(./modules.sh download_sys_con "${temp_directory}" "${username_password}")
-
-if [ "${auto}" != "1" ]
-then
     echo "Downloading nx-ovlloader..."
 fi
 nx_ovlloader_version=$(./modules.sh download_nx_ovlloader "${temp_directory}" "${username_password}")
 
 if [ "${auto}" != "1" ]
 then
-    echo "Downloading Tesla Menu..."
-fi
-tesla_menu_version=$(./modules.sh download_tesla_menu "${temp_directory}" "${username_password}")
-
-if [ "${auto}" != "1" ]
-then
     echo "Downloading ovlSysmodules..."
 fi
 ovl_sysmodules_version=$(./modules.sh download_ovl_sysmodules "${temp_directory}" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Status Monitor Overlay..."
+fi
+status_monitor_overlay_version=$(./modules.sh download_status_monitor_overlay "${temp_directory}" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Tesla Menu..."
+fi
+tesla_menu_version=$(./modules.sh download_tesla_menu "${temp_directory}" "${username_password}")
 
 # Delete the bundle if it already exists.
 dest=$(realpath -s ${1})
@@ -216,9 +222,10 @@ echo "  ldn_mitm - ${ldn_mitm_version}"
 echo "  Lockpick - ${lockpick_version}"
 echo "  Lockpick RCM - ${lockpick_rcm_version}"
 echo "  sys-clk - ${sys_clk_version}"
+echo "  sys-con - ${sys_con_version}"
 echo "  sys-ftpd-light - ${sys_ftpd_light_version}"
 echo "  NXDumpTool - ${nxdumptool_version}"
-echo "  sys-con - ${sys_con_version}"
 echo "  nx-ovlloader - ${nx_ovlloader_version}"
-echo "  Tesla Menu - ${tesla_menu_version}"
 echo "  ovlSysmodules - ${ovl_sysmodules_version}"
+echo "  Status Monitor Overlay - ${status_monitor_overlay_version}"
+echo "  Tesla Menu - ${tesla_menu_version}"

@@ -280,7 +280,19 @@ download_nx_ovlloader () {
 
     unzip -qq "${file}" -d "${1}"
     rm -rf "${file}"
-    rm -f "${1}/atmosphere/contents/010000000007E51A/flags/boot2.flag"
+
+    echo $(./common.sh get_version_number "${latest_release}")
+}
+
+download_status_monitor_overlay () {
+    mkdir -p ${1}
+    latest_release=$(./common.sh get_latest_release "${2}" "masagrator" "Status-Monitor-Overlay" "1")
+
+    asset=$(./common.sh find_asset "${latest_release}" "*.ovl")
+    file=$(./common.sh download_file "${asset}")
+
+    mkdir -p "${1}/switch/.overlays"
+    mv ${file} "${1}/switch/.overlays/Status-Monitor-Overlay.ovl"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
