@@ -153,6 +153,12 @@ sys_ftpd_version=$(./modules.sh download_sys_ftpd_light "${temp_directory}/sys_f
 
 if [ "${auto}" != "1" ]
 then
+    echo "Downloading sys-con..."
+fi
+sys_con_version=$(./modules.sh download_sys_con "${temp_directory}/sys_con" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
     echo "Downloading appstore..."
     appstore_version=$(./modules.sh download_appstore "${temp_directory}/appstore" "${username_password}")
     echo "Downloading EdiZon..."
@@ -201,6 +207,7 @@ then
     echo "  Lockpick RCM - ${lockpick_rcm_version}"
     echo "  sys-clk - ${sys_clk_version}"
     echo "  sys-ftpd-light - ${sys_ftpd_version}"
+    echo "  sys-con - ${sys_con_version}"
 else
     echo "must_have:${atmosphere_version}"
     echo "hekate:${hekate_version}"
@@ -211,4 +218,5 @@ else
     echo "lockpick_rcm:${lockpick_rcm_version}"
     echo "sys_clk:${sys_clk_version}"
     echo "sys_ftpd:${sys_ftpd_version}"
+    echo "sys_con:${sys_con_version}"
 fi

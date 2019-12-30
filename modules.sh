@@ -90,7 +90,7 @@ download_appstore () {
 
 download_edizon () {
     mkdir -p ${1}
-    latest_release=$(./common.sh get_latest_release "${2}" "WerWolv" "EdiZon" "0")
+    latest_release=$(./common.sh get_latest_release "${2}" "WerWolv" "EdiZon" "1")
 
     asset=$(./common.sh find_asset "${latest_release}" "*.zip")
     if [ ! -z "${asset}" ]
