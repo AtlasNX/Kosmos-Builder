@@ -118,11 +118,11 @@ download_emuiibo () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
-    rm -f "${1}/titles/0100000000000352/flags/boot2.flag"
+    rm -f "${1}/contents/0100000000000352/flags/boot2.flag"
     rm -f "${file}"
     mkdir -p "${1}/atmosphere/contents"
-    mv "${1}/titles/0100000000000352" "${1}/atmosphere/contents/"
-    rm -rf "${1}/titles"
+    mv "${1}/contents/0100000000000352" "${1}/atmosphere/contents/"
+    rm -rf "${1}/contents"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
