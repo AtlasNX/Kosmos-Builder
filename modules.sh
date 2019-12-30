@@ -176,8 +176,6 @@ download_ldn_mitm () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
-    mv "${1}/atmosphere/titles/4200000000000010" "${1}/atmosphere/contents/4200000000000010"
-    rm -rf "${1}/atmosphere/titles"
     rm -f "${1}/atmosphere/contents/4200000000000010/flags/boot2.flag"
     rm -f "${file}"
 
@@ -251,6 +249,20 @@ download_nxdumptool () {
 
     mkdir -p "${1}/switch/NXDumpTool"
     mv ${file} "${1}/switch/NXDumpTool/NXDumpTool.nro"
+
+    echo $(./common.sh get_version_number "${latest_release}")
+}
+
+download_sys_con () {
+    mkdir -p ${1}
+    latest_release=$(./common.sh get_latest_release "${2}" "cathery" "sys-con" "1")
+
+    asset=$(./common.sh find_asset "${latest_release}" "sys-con-*" "*.zip")
+    file=$(./common.sh download_file "${asset}")
+
+    unzip -qq "${file}" -d "${1}"
+    rm -f "${file}"
+    rm -f "${1}/atmosphere/contents/690000000000000D/flags/boot2.flag"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }

@@ -158,6 +158,12 @@ then
 fi
 nxdumptool_version=$(./modules.sh download_nxdumptool "${temp_directory}" "${username_password}")
 
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading sys_con..."
+fi
+sys_con_version=$(./modules.sh download_sys_con "${temp_directory}" "${username_password}")
+
 # Delete the bundle if it already exists.
 dest=$(realpath -s ${1})
 rm -f "${dest}/Kosmos-${version_number}.zip"
@@ -194,3 +200,4 @@ echo "  Lockpick RCM - ${lockpick_rcm_version}"
 echo "  sys-clk - ${sys_clk_version}"
 echo "  sys-ftpd-light - ${sys_ftpd_light_version}"
 echo "  NXDumpTool - ${nxdumptool_version}"
+echo "  sys-con - ${sys_con_version}"
