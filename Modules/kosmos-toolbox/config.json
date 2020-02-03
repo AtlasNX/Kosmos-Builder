@@ -6,18 +6,8 @@
 			"requires_reboot": true
 		},
 		{
-			"name"  : "emuiibo",
-			"tid"   : "0100000000000352",
-			"requires_reboot": true
-		},
-		{
 			"name"  : "hid-mitm",
 			"tid"   : "0100000000000FAF",
-			"requires_reboot": true
-		},
-		{
-			"name"  : "ldn_mitm",
-			"tid"   : "4200000000000010",
 			"requires_reboot": true
 		},
 		{
@@ -28,21 +18,6 @@
 		{
 			"name"  : "ojds-nx",
 			"tid"   : "0100000000000901",
-			"requires_reboot": false
-		},
-		{
-			"name"  : "sys-clk",
-			"tid"   : "00FF0000636C6BFF",
-			"requires_reboot": false
-		},
-		{
-			"name"  : "sys-con",
-			"tid"   : "690000000000000D",
-			"requires_reboot": false
-		},
-		{
-			"name"  : "sys-ftpd-light",
-			"tid"   : "420000000000000E",
 			"requires_reboot": false
 		},
 		{

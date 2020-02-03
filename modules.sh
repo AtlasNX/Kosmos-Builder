@@ -123,6 +123,7 @@ download_emuiibo () {
     mkdir -p "${1}/atmosphere/contents"
     mv "${1}/contents/0100000000000352" "${1}/atmosphere/contents/"
     rm -rf "${1}/contents"
+    cp "./Modules/emuiibo/toolbox.json" "${1}/atmosphere/contents/0100000000000352/toolbox.json"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
@@ -178,6 +179,7 @@ download_ldn_mitm () {
     unzip -qq "${file}" -d "${1}"
     rm -f "${1}/atmosphere/contents/4200000000000010/flags/boot2.flag"
     rm -f "${file}"
+    cp "./Modules/ldn_mitm/toolbox.json" "${1}/atmosphere/contents/4200000000000010/toolbox.json"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
@@ -222,6 +224,7 @@ download_sys_clk () {
     rm -f "${1}/README.html"
     rm -f "${1}/README.md"
     rm -f "${file}"
+    cp "./Modules/sys-clk/toolbox.json" "${1}/atmosphere/contents/00FF0000636C6BFF/toolbox.json"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
@@ -236,6 +239,7 @@ download_sys_ftpd_light () {
     unzip -qq "${file}" -d "${1}"
     rm -f "${1}/atmosphere/contents/420000000000000E/flags/boot2.flag"
     rm -f "${file}"
+    cp "./Modules/sys-ftpd-light/toolbox.json" "${1}/atmosphere/contents/420000000000000E/toolbox.json"
 
     echo $(./common.sh get_version_number "${latest_release}")
 }
