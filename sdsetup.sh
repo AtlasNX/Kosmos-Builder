@@ -110,7 +110,7 @@ fi
 hekate_version=$(./modules.sh download_hekate "${temp_directory}/must_have" "${version_number}" "${username_password}")
 hekate_version=$(./modules.sh download_hekate "${temp_directory}/hekate" "${version_number}" "${username_password}")
 
-if [ "${auto}" != "1" ] 
+if [ "${auto}" != "1" ]
 then
     echo "Downloading emuiibo..."
 fi

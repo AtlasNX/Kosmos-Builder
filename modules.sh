@@ -218,6 +218,7 @@ download_sys_clk () {
     file=$(./common.sh download_file "${asset}")
 
     unzip -qq "${file}" -d "${1}"
+    mkdir -p "${1}/atmosphere/contents"
     mv "${1}/atmosphere/titles/00FF0000636C6BFF" "${1}/atmosphere/contents/00FF0000636C6BFF"
     rm -rf "${1}/atmosphere/titles"
     rm -f "${1}/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag"
