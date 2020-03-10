@@ -108,8 +108,9 @@ then
     echo "Downloading hekate..."
 fi
 hekate_version=$(./modules.sh download_hekate "${temp_directory}/must_have" "${version_number}" "${username_password}")
+hekate_version=$(./modules.sh download_hekate "${temp_directory}/hekate" "${version_number}" "${username_password}")
 
-if [ "${auto}" != "1" ]
+if [ "${auto}" != "1" ] 
 then
     echo "Downloading emuiibo..."
 fi
@@ -169,10 +170,19 @@ then
     lockpick_version=$(./modules.sh download_lockpick "${temp_directory}/lockpick" "${username_password}")
 fi
 
+# Move hekate to be sdsetup friendly
+mkdir ${temp_directory}/hekate/payloads/
+mv ${temp_directory}/hekate/*.bin ${temp_directory}/hekate/payloads/
+
+# Move lockpick_rcm to be sdsetup friendly
+mkdir ${temp_directory}/lockpick_rcm/payloads/
+mv ${temp_directory}/lockpick_rcm/bootloader/payloads/*.bin ${temp_directory}/lockpick_rcm/payloads/
 
 # Delete some files we don't want in the output
 rm -f ${temp_directory}/must_have/hbmenu.nro
 rm -f ${temp_directory}/must_have/hekate*
+find ${temp_directory}/hekate/* -depth ! -name "*payloads*" -type d -exec rm -r "{}" \;
+find ${temp_directory}/lockpick_rcm/* -depth ! -name "*payloads*" -type d -exec rm -r "{}" \;
 
 # Delete the output directory if it already exists.
 dest=""
