@@ -160,23 +160,30 @@ sys_con_version=$(./modules.sh download_sys_con "${temp_directory}/sys_con" "${u
 
 if [ "${auto}" != "1" ]
 then
-    echo "Downloading appstore..."
-    appstore_version=$(./modules.sh download_appstore "${temp_directory}/appstore" "${username_password}")
-    echo "Downloading EdiZon..."
-    edizon_version=$(./modules.sh download_edizon "${temp_directory}/edizon" "${username_password}")
-    echo "Downloading Goldleaf..."
-    goldleaf_version=$(./modules.sh download_goldleaf "${temp_directory}/goldleaf" "${username_password}")
-    echo "Downloading Lockpick..."
-    lockpick_version=$(./modules.sh download_lockpick "${temp_directory}/lockpick" "${username_password}")
+    echo "Downloading nx-ovlloader..."
 fi
+nx_ovlloader_version=$(./modules.sh download_nx_ovlloader "${temp_directory}/nx_ovlloader" "${username_password}")
 
-# Move hekate to be sdsetup friendly
-mkdir ${temp_directory}/hekate/payloads/
-mv ${temp_directory}/hekate/*.bin ${temp_directory}/hekate/payloads/
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading ovlSysmodules..."
+fi
+ovl_sysmodules_version=$(./modules.sh download_ovl_sysmodules "${temp_directory}/ovl_sysmodules" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Status Monitor Overlay..."
+fi
+status_monitor_overlay_version=$(./modules.sh download_status_monitor_overlay "${temp_directory}/status_monitor_overlay" "${username_password}")
+
+if [ "${auto}" != "1" ]
+then
+    echo "Downloading Tesla Menu..."
+fi
+tesla_menu_version=$(./modules.sh download_tesla_menu "${temp_directory}/tesla_menu" "${username_password}")
 
 # Move lockpick_rcm to be sdsetup friendly
-mkdir ${temp_directory}/lockpick_rcm/payloads/
-mv ${temp_directory}/lockpick_rcm/bootloader/payloads/*.bin ${temp_directory}/lockpick_rcm/payloads/
+mv ${temp_directory}/lockpick_rcm/bootloader/payloads/*.bin ${temp_directory}/lockpick_rcm/
 
 # Delete some files we don't want in the output
 rm -f ${temp_directory}/must_have/hbmenu.nro
@@ -206,18 +213,18 @@ then
     echo "SDSetup Modules built with:"
     echo "  Atmosphere - ${atmosphere_version}"
     echo "  Hekate - ${hekate_version}"
-    echo "  EdiZon - ${edizon_version}"
     echo "  Emuiibo - ${emuiibo_version}"
-    echo "  Goldleaf - ${goldleaf_version}"
-    echo "  Homebrew App Store - ${appstore_version}"
     echo "  Kosmos Toolbox - ${kosmos_toolbox_version}"
     echo "  Kosmos Updater - ${kosmos_updater_version}"
     echo "  ldn_mitm - ${ldn_mitm_version}"
-    echo "  Lockpick - ${lockpick_version}"
     echo "  Lockpick RCM - ${lockpick_rcm_version}"
     echo "  sys-clk - ${sys_clk_version}"
     echo "  sys-ftpd-light - ${sys_ftpd_version}"
     echo "  sys-con - ${sys_con_version}"
+    echo "  nx-ovlloader - ${nx_ovlloader_version}"
+    echo "  ovlSysmodules - ${ovl_sysmodules_version}"
+    echo "  Status Monitor Overlay - ${status_monitor_overlay_version}"
+    echo "  Tesla Menu - ${tesla_menu_version}"
 else
     echo "must_have:${atmosphere_version}"
     echo "hekate:${hekate_version}"
@@ -229,4 +236,8 @@ else
     echo "sys_clk:${sys_clk_version}"
     echo "sys_ftpd:${sys_ftpd_version}"
     echo "sys_con:${sys_con_version}"
+    echo "nx_ovlloader:${nx_ovlloader_version}"
+    echo "ovl_sysmodules:${ovl_sysmodules_version}"
+    echo "status_monitor_overlay:${status_monitor_overlay_version}"
+    echo "tesla_menu:${tesla_menu_version}"
 fi
